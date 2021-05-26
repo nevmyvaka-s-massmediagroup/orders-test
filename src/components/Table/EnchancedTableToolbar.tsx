@@ -50,7 +50,7 @@ export const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          Orders
         </Typography>
       )}
       {numSelected > 0 ? (
