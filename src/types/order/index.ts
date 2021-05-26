@@ -13,7 +13,7 @@ export interface Customer {
 }
 
 export interface Details {
-    date: Date
+    date: string
 }
 
 export interface OrderDetails extends Details {
@@ -29,5 +29,21 @@ export interface Order {
     customer: Customer
     order_details: OrderDetails
     shipping_details: ShippingDetails
-    status: OrderStatus
+    status: string
+}
+
+export enum Currency {
+    'USD',
+    'EUR'
+}
+
+export interface OrderTableType {
+    orderNumber: number,
+    orderDate: Date,
+    status: string,
+    shippingDate: Date,
+    address: string,
+    address2: string,
+    value: string,
+    currency: string
 }

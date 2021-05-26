@@ -4,35 +4,32 @@ import TableHead from "@material-ui/core/TableHead";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
-import { Data, useTableStyles } from "./OrderTable";
+import { useTableStyles } from "./OrderTable";
 import { Order as OrderType } from "../../utils/sorting/sortUtils";
+import { Order, OrderTableType } from "../../types/order";
 
 interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data;
+  id: keyof OrderTableType;
   label: string;
-  numeric: boolean;
 }
 
 const headCells: HeadCell[] = [
   {
-    id: "name",
-    numeric: false,
-    disablePadding: true,
-    label: "Dessert (100g serving)",
+    id: "orderDate",
+    label: "ORDER NUMBER & DATE",
   },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" },
+  { id: "shippingDate", label: "Shipping Status" },
+  { id: "address", label: "CUSTOMER ADDRESS" },
+  { id: "value", label: "ORDER VALUE" },
 ];
+
 
 interface EnhancedTableProps {
   classes: ReturnType<typeof useTableStyles>;
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof OrderTableType
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: OrderType;
@@ -51,7 +48,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
     onRequestSort,
   } = props;
   const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+    (property: keyof OrderTableType) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -69,7 +66,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align="right"
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
