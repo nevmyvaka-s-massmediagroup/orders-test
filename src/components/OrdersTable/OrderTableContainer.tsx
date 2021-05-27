@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import {
   fetchOrdersAsync,
   isOrderLoading,
   orders as ordersSelector,
   selectPage,
   setPage,
-} from "../../app/orders/slice";
+} from "../../store/orders";
 import EnhancedTable from "./OrderTable";
 
-export const OrderListContainer = () => {
+const OrderTableContainer = () => {
   const page = useAppSelector(selectPage);
   const orders = useAppSelector(ordersSelector)
   const isLoading = useAppSelector(isOrderLoading);
@@ -21,7 +21,9 @@ export const OrderListContainer = () => {
 
   useEffect(() => {
     dispatch(fetchOrdersAsync());
-  }, []);
+  }, [dispatch]);
 
   return <div>{isLoading && !orders? "loading..." : <EnhancedTable orders={orders} page={page} setPage={handleSetPage} />}</div>;
 };
+
+export default OrderTableContainer

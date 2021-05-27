@@ -1,10 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Order } from "../../types/order";
-import { RootState } from "../store";
-import { fetchOrders } from "./ordersApi";
-
-//mock from https://gist.githubusercontent.com/ryanjn/07512cb1c008a5ec754aea6cbbf4afab/raw/eabb4d324270cf0d3d17a79ffb00ff3cfaf9acc3/orders.json
-import OrdersData from "./orderData.json";
+import { RootState } from "../configureStore";
+import { fetchOrders } from "../../api/orders/ordersApi";
 
 export const fetchOrdersAsync = createAsyncThunk(
   "order/fetchOrders",
@@ -18,7 +15,7 @@ export const fetchOrdersAsync = createAsyncThunk(
 const orderSlice = createSlice({
   name: "orders",
   initialState: {
-    orders: OrdersData as Order[],
+    orders: [] as Order[],
     isLoading: false,
     page: 1
   },

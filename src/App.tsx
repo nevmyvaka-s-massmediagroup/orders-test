@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import { OrderListContainer } from './components/Table/OrderListContainer';
-import EnhancedTable from './components/Table/OrderTable';
+import OrderTable from './components/OrdersTable'
 
 function App() {
   return (
     <div className="App">
-      <OrderListContainer />
+      <OrderTable />
     </div>
   );
 }

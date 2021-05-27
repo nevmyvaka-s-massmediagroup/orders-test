@@ -16,17 +16,11 @@ import {
 } from "../../utils/sorting/sortUtils";
 import { EnhancedTableHead } from "./EnchancedTableHead";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-
-//mock from https://gist.githubusercontent.com/ryanjn/07512cb1c008a5ec754aea6cbbf4afab/raw/eabb4d324270cf0d3d17a79ffb00ff3cfaf9acc3/orders.json
-// import OrdersData from "./orderData.json";
-
 import { Order, OrderTableType } from "../../types/order";
 import { getDataForOrderTable } from "../../utils/DataManipulations/dataParse";
 import { DateFormats, formatDate } from "../../utils/Dates/dateManipulations";
 import ShippingStatus from "../ShippingStatus";
 import { Header } from "./Header";
-
-// const rows: OrderTableType[] = getDataForOrderTable(OrdersData);
 
 export const useTableStyles = makeStyles((theme: Theme) =>
   createStyles({

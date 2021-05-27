@@ -11,7 +11,6 @@ import {
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
-import FilterListIcon from "@material-ui/icons/FilterList";
 
 const useToolbarStyles = makeStyles((theme: Theme) =>
   createStyles({
