@@ -21,6 +21,7 @@ export enum DateFormats {
 }
 
 export const formatDate = (dateFormat: DateFormats, date: Date): string => {
+    // const date = new Date(dateStr)
     switch (dateFormat) {
         case DateFormats["Mm. D, YYYY"]:
             return `${getMounthNameByIdx(date.getMonth())}. ${date.getDay()}, ${date.getFullYear()}`

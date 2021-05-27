@@ -26,7 +26,7 @@ const useStyles = makeStyles(() =>
       color: "#4A4AFF",
     },
     dot: {
-        margin: '0 5px 0 5px',
+      margin: "0 5px 0 5px",
       width: "6px",
       height: "6px",
       borderRadius: "50%",
@@ -44,33 +44,45 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const ShippingStatus = (status: string) => {
+interface Props {
+  status: string;
+}
+
+const ShippingStatus: React.FC<Props> = ({ status }) => {
   const classes = useStyles();
-  switch (status) {
-    case "shipped":
-      return (
-        <div className={clsx(classes.root, classes.shipped)}>
-          <div className={clsx(classes.dotShipped, classes.dot)} />
-          {status}
-        </div>
-      );
-    case "cancelled":
-      return (
+
+  const getStatusHtml = (status: string) => {
+    switch (status) {
+      case "shipped":
+        return (
+          <div className={clsx(classes.root, classes.shipped)}>
+            <div className={clsx(classes.dotShipped, classes.dot)} />
+            {status}
+          </div>
+        );
+      case "cancelled":
+        return (
+          <div className={clsx(classes.root, classes.cancelled)}>
+            <div className={clsx(classes.dotCancelled, classes.dot)} />
+            {status}
+          </div>
+        );
+      case "open":
+        return (
+          <div className={clsx(classes.root, classes.open)}>
+            <div className={clsx(classes.dotOpen, classes.dot)} />
+            {status}
+          </div>
+        );
+      default:
         <div className={clsx(classes.root, classes.cancelled)}>
           <div className={clsx(classes.dotCancelled, classes.dot)} />
           {status}
-        </div>
-      );
-    case "open":
-      return (
-        <div className={clsx(classes.root, classes.open)}>
-          <div className={clsx(classes.dotOpen, classes.dot)} />
-          {status}
-        </div>
-      );
-    default:
-      break;
-  }
+        </div>;
+    }
+  };
+
+  return <div>{getStatusHtml(status)}</div>;
 };
 
 export default ShippingStatus;

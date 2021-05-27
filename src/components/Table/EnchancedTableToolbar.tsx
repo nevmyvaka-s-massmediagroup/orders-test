@@ -1,12 +1,17 @@
-import React from 'react';
-import Toolbar from '@material-ui/core/Toolbar';
-import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
-import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import React from "react";
+import Toolbar from "@material-ui/core/Toolbar";
+import clsx from "clsx";
+import Typography from "@material-ui/core/Typography";
+import {
+  createStyles,
+  lighten,
+  makeStyles,
+  Theme,
+} from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import DeleteIcon from "@material-ui/icons/Delete";
+import FilterListIcon from "@material-ui/icons/FilterList";
 
 const useToolbarStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,7 +20,7 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
       paddingRight: theme.spacing(1),
     },
     highlight:
-      theme.palette.type === 'light'
+      theme.palette.type === "light"
         ? {
             color: theme.palette.secondary.main,
             backgroundColor: lighten(theme.palette.secondary.light, 0.85),
@@ -25,9 +30,12 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.secondary.dark,
           },
     title: {
-      flex: '1 1 100%',
+      color: "#6E6893",
+      fontWeight: 700,
+      fontSize: "14px",
+      textTransform: 'uppercase'
     },
-  }),
+  })
 );
 
 interface EnhancedTableToolbarProps {
@@ -45,11 +53,21 @@ export const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       })}
     >
       {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
+        <Typography
+          className={classes.title}
+          color="inherit"
+          variant="subtitle1"
+          component="div"
+        >
           {numSelected} selected
         </Typography>
       ) : (
-        <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+        <Typography
+          className={classes.title}
+          variant="h6"
+          id="tableTitle"
+          component="div"
+        >
           Orders
         </Typography>
       )}
@@ -59,13 +77,7 @@ export const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
+      ) : null}
     </Toolbar>
   );
 };
