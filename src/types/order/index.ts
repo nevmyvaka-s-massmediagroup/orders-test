@@ -44,6 +44,6 @@ export interface OrderTableType {
     shippingDate: Date,
     address: string,
     address2: string,
-    value: string,
+    value: number,
     currency: string
 }

@@ -10,7 +10,7 @@ export const getDataForOrderTable = (orders: Order[]): OrderTableType[] => {
         shippingDate: new Date(order.shipping_details.date),
         address: order.customer.address.line1 ?? order.customer.address.line2,
         address2: `${order.customer.address.city}, ${order.customer.address.state} ${order.customer.address.zip}`,
-        value: `$${order.order_details.value}`,
+        value: order.order_details.value,
         currency: "USD"
       });
     });

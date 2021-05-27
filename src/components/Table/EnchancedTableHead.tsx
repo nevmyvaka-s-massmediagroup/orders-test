@@ -6,7 +6,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useTableStyles } from "./OrderTable";
 import { Order as OrderType } from "../../utils/sorting/sortUtils";
-import { Order, OrderTableType } from "../../types/order";
+import { OrderTableType } from "../../types/order";
+import { Typography } from "@material-ui/core";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 interface HeadCell {
   id: keyof OrderTableType;
@@ -22,7 +24,6 @@ const headCells: HeadCell[] = [
   { id: "address", label: "CUSTOMER ADDRESS" },
   { id: "value", label: "ORDER VALUE" },
 ];
-
 
 interface EnhancedTableProps {
   classes: ReturnType<typeof useTableStyles>;
@@ -66,7 +67,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align="left"
+            align={headCell.id === "value" ? "right" : "left"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -74,7 +75,11 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              <Typography
+                style={{ color: "#6E6893", fontWeight: 600, fontSize: "12px" }}
+              >
+                {headCell.label.toUpperCase()}
+              </Typography>
               {orderBy === headCell.id ? (
                 <span className={classes.visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
@@ -83,6 +88,9 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell>
+          <MoreVertIcon style={{ color: "#8B83BA" }} />
+        </TableCell>
       </TableRow>
     </TableHead>
   );

@@ -1,24 +1,29 @@
-import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import { EnhancedTableToolbar } from './EnchancedTableToolbar';
-import { getComparator, Order as OrderType } from '../../utils/sorting/sortUtils';
-import { EnhancedTableHead } from './EnchancedTableHead';
+import React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Checkbox from "@material-ui/core/Checkbox";
+import { EnhancedTableToolbar } from "./EnchancedTableToolbar";
+import {
+  getComparator,
+  Order as OrderType,
+} from "../../utils/sorting/sortUtils";
+import { EnhancedTableHead } from "./EnchancedTableHead";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 //mock from https://gist.githubusercontent.com/ryanjn/07512cb1c008a5ec754aea6cbbf4afab/raw/eabb4d324270cf0d3d17a79ffb00ff3cfaf9acc3/orders.json
-import OrdersData from './orderData.json'
-import { Order, OrderTableType } from '../../types/order';
-import { getDataForOrderTable } from '../../utils/DataManipulations/dataParse';
-import { DateFormats, formatDate } from '../../utils/Dates/dateManipulations';
+import OrdersData from "./orderData.json";
+import { Order, OrderTableType } from "../../types/order";
+import { getDataForOrderTable } from "../../utils/DataManipulations/dataParse";
+import { DateFormats, formatDate } from "../../utils/Dates/dateManipulations";
+import ShippingStatus from "../ShippingStatus";
 
-const rows: OrderTableType[] = getDataForOrderTable(OrdersData)
+const rows: OrderTableType[] = getDataForOrderTable(OrdersData);
 
 function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
@@ -30,44 +35,64 @@ function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-
 export const useTableStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
+      width: "1100px",
     },
     paper: {
-      width: '100%',
+      width: "1100px",
       marginBottom: theme.spacing(2),
+      boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)",
+      borderRadius: "8px",
     },
     table: {
       minWidth: 750,
     },
     visuallyHidden: {
       border: 0,
-      clip: 'rect(0 0 0 0)',
+      clip: "rect(0 0 0 0)",
       height: 1,
       margin: -1,
-      overflow: 'hidden',
+      overflow: "hidden",
       padding: 0,
-      position: 'absolute',
+      position: "absolute",
       top: 20,
       width: 1,
     },
-  }),
+    orderDateText: {
+      fontWeight: 400,
+      lineHeight: "16.94px",
+      letterSpacing: "5%",
+      fontSize: "14px",
+      color: "#6E6893",
+    },
+
+    shippingDateText: {
+      fontWeight: 500,
+      lineHeight: "14.52px",
+      letterSpacing: "5%",
+      fontSize: "12px",
+      color: "#6E6893",
+    },
+  })
 );
 
 export default function EnhancedTable() {
   const classes = useTableStyles();
-  const [order, setOrder] = React.useState<OrderType>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof OrderTableType>('orderDate');
+  const [order, setOrder] = React.useState<OrderType>("asc");
+  const [orderBy, setOrderBy] =
+    React.useState<keyof OrderTableType>("orderDate");
   const [selected, setSelected] = React.useState<number[]>([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(2);
 
-  const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof OrderTableType) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+  const handleRequestSort = (
+    event: React.MouseEvent<unknown>,
+    property: keyof OrderTableType
+  ) => {
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
@@ -80,7 +105,10 @@ export default function EnhancedTable() {
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, orderNumber: number) => {
+  const handleClick = (
+    event: React.MouseEvent<unknown>,
+    orderNumber: number
+  ) => {
     const selectedIndex = selected.indexOf(orderNumber);
     let newSelected: number[] = [];
 
@@ -93,7 +121,7 @@ export default function EnhancedTable() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -104,15 +132,19 @@ export default function EnhancedTable() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const isSelected = (orderNumber: number) => selected.indexOf(orderNumber) !== -1;
+  const isSelected = (orderNumber: number) =>
+    selected.indexOf(orderNumber) !== -1;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  console.log(rows, orderBy);
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -134,48 +166,78 @@ export default function EnhancedTable() {
             />
             <TableBody>
               {
-              // stableSort(rows, getComparator(order, orderBy))
+                // stableSort(rows, getComparator(order, orderBy))
                 rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.orderNumber as number);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    const isItemSelected = isSelected(
+                      row.orderNumber as number
+                    );
+                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.orderNumber as number)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.orderNumber}
-                      selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.orderNumber} <br />
-                        {formatDate(DateFormats['Mm. D, YYYY'], row.orderDate)}
-                      </TableCell>
-                      <TableCell align="left">
-                      {row.status} <br />
-                      {formatDate(DateFormats['DD/MMM/YYYY'], row.shippingDate)}
-                      </TableCell>
-                      <TableCell align="left">
-                      {row.address} <br />
-                        {row.address2}
-                      </TableCell>
-                      <TableCell align="right">
-                      {row.value} <br />
-                        {row.currency}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+                    return (
+                      <TableRow
+                        hover
+                        onClick={(event) =>
+                          handleClick(event, row.orderNumber as number)
+                        }
+                        role="checkbox"
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row.orderNumber}
+                        selected={isItemSelected}
+                      >
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            checked={isItemSelected}
+                            inputProps={{ "aria-labelledby": labelId }}
+                          />
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          id={labelId}
+                          scope="row"
+                          padding="none"
+                        >
+                          <b># {row.orderNumber}</b>
+                          <p className={classes.orderDateText}>
+                            Ordered:
+                            {formatDate(
+                              DateFormats["Mm. D, YYYY"],
+                              row.orderDate
+                            )}
+                          </p>
+                        </TableCell>
+                        <TableCell align="left">
+                          {/* {ShippingStatus(row.status)} */}
+                          {row.status}
+                          <p className={classes.shippingDateText}>
+                            Updated:
+                            {formatDate(
+                              DateFormats["DD/MMM/YYYY"],
+                              row.shippingDate
+                            )}
+                          </p>
+                        </TableCell>
+                        <TableCell align="left">
+                          <b>
+                            {row.address} <br />
+                            {row.address2}
+                          </b>
+                        </TableCell>
+                        <TableCell align="right">
+                          <b>${row.value}</b> <br />
+                          {row.currency}
+                        </TableCell>
+                        <TableCell>
+                          <MoreVertIcon
+                            style={{ color: "#8B83BA" }}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
+              }
               {emptyRows > 0 && (
                 <TableRow>
                   <TableCell colSpan={6} />
@@ -185,7 +247,12 @@ export default function EnhancedTable() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          style={{
+            backgroundColor: "#F4F2FF",
+            borderBottomLeftRadius: "8px",
+            borderBottomRightRadius: "8px",
+          }}
+          rowsPerPageOptions={[2, 5, 8]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
