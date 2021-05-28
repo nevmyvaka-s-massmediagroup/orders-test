@@ -23,11 +23,9 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Сreated unit tests that verify the sort functionality
 
-
-
 ## Note
-
 - Also implemented select and selectAll list functionality
 - The recommended library (Material) was used and customized
 - I chosed material ui styling guide instead SASS in this project, I think this is the most suitable solution, to avoid redundant dependencies.
+- Implemented mock function for fetching data from json and added several entries to the list for checking pagination and sorting
 
