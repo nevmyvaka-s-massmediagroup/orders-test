@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/),[Redux Toolkit](https://redux-toolkit.js.org/), [Material-ui React](https://material-ui.com/) and [Typescript](https://www.typescriptlang.org/)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using:
+- [Redux](https://redux.js.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/) 
+- [Material-ui React](https://material-ui.com/)
+- [Typescript](https://www.typescriptlang.org/)
 
 ## Available Scripts
 
@@ -23,7 +27,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Note
 
-Also implemented select and selectAll list functionality
-The recommended library (Material) was used and customized
-I chosed material ui styling guide insted SASS in this project, I think this is the most suitable solution, to avoid unnecessary dependencies.
+- Also implemented select and selectAll list functionality
+- The recommended library (Material) was used and customized
+- I chosed material ui styling guide instead SASS in this project, I think this is the most suitable solution, to avoid redundant dependencies.
 
