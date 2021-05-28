@@ -24,9 +24,9 @@ export const formatDate = (dateFormat: DateFormats, date: Date): string => {
     // const date = new Date(dateStr)
     switch (dateFormat) {
         case DateFormats["Mm. D, YYYY"]:
-            return `${getMounthNameByIdx(date.getMonth())}. ${date.getDay()}, ${date.getFullYear()}`
+            return `${getMounthNameByIdx(date.getMonth())}. ${date.getDate()}, ${date.getFullYear()}`
         case DateFormats["DD/MMM/YYYY"]:
-            return `${date.getDay()}/${getMounthNameByIdx(date.getMonth()).toUpperCase()}/${date.getFullYear()}`
+            return `${date.getDate()}/${getMounthNameByIdx(date.getMonth()).toUpperCase()}/${date.getFullYear()}`
         default:
             return ''
     }

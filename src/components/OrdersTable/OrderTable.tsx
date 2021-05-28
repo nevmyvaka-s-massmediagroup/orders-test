@@ -54,7 +54,6 @@ export const useTableStyles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       color: "#6E6893",
     },
-
     shippingDateText: {
       fontWeight: 500,
       lineHeight: "14.52px",
@@ -66,12 +65,16 @@ export const useTableStyles = makeStyles((theme: Theme) =>
 );
 
 interface EnhancedTableProps {
-  orders: Order[]
-  page: number
-  setPage: (page: number) => void
+  orders: Order[];
+  page: number;
+  setPage: (page: number) => void;
 }
 
-const EnhancedTable: React.FC<EnhancedTableProps> = ({orders, setPage, page}) => {
+const EnhancedTable: React.FC<EnhancedTableProps> = ({
+  orders,
+  setPage,
+  page,
+}) => {
   const rows: OrderTableType[] = getDataForOrderTable(orders);
   const classes = useTableStyles();
   const [order, setOrder] = React.useState<OrderType>("asc");
@@ -198,14 +201,14 @@ const EnhancedTable: React.FC<EnhancedTableProps> = ({orders, setPage, page}) =>
                         scope="row"
                         padding="none"
                       >
-                        <b># {row.orderNumber}</b>
-                        <p className={classes.orderDateText}>
-                          Ordered:
+                        <b># {row.orderNumber}</b> <br />
+                        <span className={classes.orderDateText}>
+                          Ordered:{" "}
                           {formatDate(
                             DateFormats["Mm. D, YYYY"],
                             row.orderDate
                           )}
-                        </p>
+                        </span>
                       </TableCell>
                       <TableCell align="left">
                         <ShippingStatus status={row.status} />
@@ -228,7 +231,7 @@ const EnhancedTable: React.FC<EnhancedTableProps> = ({orders, setPage, page}) =>
                         <b>${row.value}</b> <br />
                         {row.currency}
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="right">
                         <MoreVertIcon style={{ color: "#8B83BA" }} />
                       </TableCell>
                     </TableRow>
@@ -247,6 +250,11 @@ const EnhancedTable: React.FC<EnhancedTableProps> = ({orders, setPage, page}) =>
             backgroundColor: "#F4F2FF",
             borderBottomLeftRadius: "8px",
             borderBottomRightRadius: "8px",
+            // fontSize: '12px',
+            color: "#6E6893",
+            fontWeight: 600,
+            lineHeight: "14.52px",
+            letterSpacing: "5%",
           }}
           rowsPerPageOptions={[2, 5, 8]}
           component="div"
@@ -259,6 +267,6 @@ const EnhancedTable: React.FC<EnhancedTableProps> = ({orders, setPage, page}) =>
       </Paper>
     </div>
   );
-}
+};
 
-export default EnhancedTable
+export default EnhancedTable;

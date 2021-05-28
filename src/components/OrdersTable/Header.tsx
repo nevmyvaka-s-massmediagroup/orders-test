@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: "16.94px",
   },
   totalOrderNumber: {
-    color: "#4A4AFF",
+    color: "#6D5BD0",
     fontSize: "18px",
     fontWeight: 700,
     lineHeight: "21.78px",

@@ -88,7 +88,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
             </TableSortLabel>
           </TableCell>
         ))}
-        <TableCell>
+        <TableCell align="right">
           <MoreVertIcon style={{ color: "#8B83BA" }} />
         </TableCell>
       </TableRow>

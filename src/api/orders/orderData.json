@@ -58,7 +58,7 @@
        },
        "order_details":{
           "value":98.99,
-          "date":"Tue Jan 10 2021 00:00:00 GMT+0000 (GMT)"
+          "date":"Tue Jan 19 2021 00:00:00 GMT+0000 (GMT)"
        },
        "shipping_details":{
           "date":"Wed Jan 13 2021 00:00:00 GMT+0000 (GMT)"
@@ -80,7 +80,7 @@
        },
        "order_details":{
           "value":98.99,
-          "date":"Tue Jan 10 2021 00:00:00 GMT+0000 (GMT)"
+          "date":"Tue Sep 24 2021 00:00:00 GMT+0000 (GMT)"
        },
        "shipping_details":{
           "date":"Wed Jan 13 2021 00:00:00 GMT+0000 (GMT)"
@@ -102,12 +102,12 @@
        },
        "order_details":{
           "value":98.99,
-          "date":"Tue Jan 10 2021 00:00:00 GMT+0000 (GMT)"
+          "date":"Tue Jan 20 2021 00:00:00 GMT+0000 (GMT)"
        },
        "shipping_details":{
           "date":"Wed Jan 13 2021 00:00:00 GMT+0000 (GMT)"
        },
-       "status":"cancelled"
+       "status":"shipped"
     },
     {
        "order_number":1000104,
@@ -129,7 +129,7 @@
        "shipping_details":{
           "date":"Wed Jan 13 2021 00:00:00 GMT+0000 (GMT)"
        },
-       "status":"cancelled"
+       "status":"shipped"
     },
     {
        "order_number":1000105,
@@ -146,12 +146,12 @@
        },
        "order_details":{
           "value":98.99,
-          "date":"Tue Jan 10 2021 00:00:00 GMT+0000 (GMT)"
+          "date":"Tue Jan 12 2021 00:00:00 GMT+0000 (GMT)"
        },
        "shipping_details":{
           "date":"Wed Jan 13 2021 00:00:00 GMT+0000 (GMT)"
        },
-       "status":"cancelled"
+       "status":"open"
     },
     {
        "order_number":1000106,
@@ -168,7 +168,7 @@
        },
        "order_details":{
           "value":98.99,
-          "date":"Tue Jan 10 2021 00:00:00 GMT+0000 (GMT)"
+          "date":"Tue Mar 13 2021 00:00:00 GMT+0000 (GMT)"
        },
        "shipping_details":{
           "date":"Wed Jan 13 2021 00:00:00 GMT+0000 (GMT)"
